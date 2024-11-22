@@ -18,9 +18,21 @@ async function fetchIMDBData() {
 
       const data = await response.json();
       console.log('Fetched Data:', data);
+
+      const movieData = data.result;
+
+      movieData.array.forEach(movie => {
+        const card = document.createElement('div');
+        card.className = "card"
+        card.innerHTML =`
+        
+        `
+      });
+
   } catch (error) {
       console.error('Error fetching data:', error);
   }
 }
 
 fetchIMDBData();
+
