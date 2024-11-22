@@ -35,6 +35,7 @@ async function fetchIMDBData() {
       `;
       card.style.height = "150px";
       card.style.width = "fit-content"
+      card.style.height = "fit-content"
       document.getElementById("list").style.display = "grid"
       document.getElementById("list").style.gap = "50px"
       document.getElementById("list").appendChild(card);
