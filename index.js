@@ -22,20 +22,23 @@ async function fetchIMDBData() {
     const movieData = data.result;
 
     movieData.forEach(movie => {
-      document.getElementById("list").style.display = "grid"
-      document.getElementById("list").style.gap = 50
+      
       const card = document.createElement('div');
       card.className = "card";
       card.innerHTML = `
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="width: 10rem;">
           <a href=${movie.Poster}><img class="card-img-top" src=${movie.Poster} alt="Card image cap"></a>
           <div class="card-body">
             <p class="card-text"><h1>${movie.Title}</h1><h3>${movie.Year}</h3></p>
           </div>
         </div>
       `;
-      card.style.height = 150;
-      document.body.appendChild(card);
+      card.style.height = "150px";
+      card.style.width = "fit-content"
+      document.getElementById("list").style.display = "grid"
+      document.getElementById("list").style.gap = "50px"
+      document.getElementById("list").appendChild(card);
+
     });
 
   } catch (error) {
