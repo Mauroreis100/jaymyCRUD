@@ -19,7 +19,7 @@ async function fetchIMDBData() {
       const data = await response.json();
       console.log('Fetched Data:', data);
 
-      const movieData = data.result;
+      const movieData = data;
 
       movieData.array.forEach(movie => {
         const card = document.createElement('div');
