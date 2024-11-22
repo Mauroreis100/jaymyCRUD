@@ -1,3 +1,10 @@
+function removeAllChildNodes(parent) {
+  while (parent.firstChild) {
+      parent.removeChild(parent.firstChild);
+  }
+}
+
+
 async function fetchIMDBData(name) {
 
   if(name){
@@ -46,7 +53,7 @@ async function fetchIMDBData(name) {
     });
 
     let list = document.getElementById("list")
-    list.replaceChild(<div></div>, list.firstChild);
+    removeAllChildNodes(list)
     cards.forEach(card =>{
       list.appendChild(card, list.firstChild);
     });
