@@ -24,7 +24,7 @@ async function fetchIMDBData() {
     movieData.forEach(movie => {
       
       const card = document.createElement('div');
-      card.className = "card";
+      card.className = "movie-card";
       card.innerHTML = `
         <div class="card" style="width: 10rem;">
           <a href=${movie.Poster}><img class="card-img-top" src=${movie.Poster} alt="Card image cap"></a>
@@ -33,12 +33,7 @@ async function fetchIMDBData() {
           </div>
         </div>
       `;
-      card.style.height = "150px";
-      card.style.width = "fit-content"
-      card.style.height = "fit-content"
-      document.getElementById("list").style.display = "grid"
-      document.getElementById("list").style.gap = "50px"
-      document.getElementById("list").appendChild(card);
+
 
     });
 
