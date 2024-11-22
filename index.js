@@ -4,7 +4,7 @@ fetch("https://api.collectapi.com/imdb/imdbSearchByName?query=Avengers", {
       "content-type": "application/json",
       authorization: "apikey 3qD0Y8zSDgIFKcbh0NJ3yy:6rXFRh4FvlGl4d4k1tWml4",
     },
-    credentials:"omit"
+    mode:"no-cors"
   })
     .then((response) => {
       if (!response.ok) {
