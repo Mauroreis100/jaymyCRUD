@@ -26,6 +26,7 @@ async function fetchIMDBData(name) {
     console.log('Fetched Data:', data);
 
     const movieData = data.result;
+    let cards = []
 
     movieData.forEach(movie => {
       
@@ -40,9 +41,14 @@ async function fetchIMDBData(name) {
         </div>
       `;
 
-      let list = document.getElementById("list")
-      list.replaceChild(card, list.firstChild);
+      cards.push(card)
 
+    });
+
+    let list = document.getElementById("list")
+    list.replaceChild();
+    cards.forEach(card =>{
+      list.appendChild(card, list.firstChild);
     });
 
   } catch (error) {
