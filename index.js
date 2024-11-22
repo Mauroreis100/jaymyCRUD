@@ -46,7 +46,7 @@ async function fetchIMDBData(name) {
     });
 
     let list = document.getElementById("list")
-    list.replaceChild();
+    list.replaceChild(<div></div>, list.firstChild);
     cards.forEach(card =>{
       list.appendChild(card, list.firstChild);
     });
