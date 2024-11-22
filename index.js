@@ -26,7 +26,7 @@ async function fetchIMDBData() {
       const card = document.createElement('div');
       card.className = "movie-card";
       card.innerHTML = `
-        <div class="card" style="width: 10rem;">
+        <div class="card" style="width: 18rem;">
           <a href=${movie.Poster}><img class="card-img-top" src=${movie.Poster} alt="Card image cap"></a>
           <div class="card-body">
             <p class="card-text"><h1>${movie.Title}</h1><h3>${movie.Year}</h3></p>
