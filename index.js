@@ -57,7 +57,7 @@ async function fetchIMDBData(name) {
       errorView.errorView = "movie-card";
       errorView.innerHTML = `
           <div class="error-message" style="position: center;">
-            <h1>Erro 404 - No Media named ${name}</h1>
+            <h1>Error! No Media named ${name}</h1>
           </div>
         `;
         cards.push(errorView)
