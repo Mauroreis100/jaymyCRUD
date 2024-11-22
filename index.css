@@ -17,3 +17,9 @@ form{
 button, input, a{
     margin: 0 10px;
 }
+
+.error-message{
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+}

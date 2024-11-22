@@ -34,29 +34,43 @@ async function fetchIMDBData(name) {
 
     const movieData = data.result;
     let cards = []
-
-    movieData.forEach(movie => {
-      
-      const card = document.createElement('div');
-      card.className = "movie-card";
-      card.innerHTML = `
-        <div class="card" style="width: 18rem;">
-          <a href=${movie.Poster}><img class="card-img-top" src=${movie.Poster} alt="Card image cap"></a>
-          <div class="card-body">
-            <p class="card-text"><h1>${movie.Title}</h1><h3>${movie.Year}</h3></p>
+    if(movieData!=0){
+      movieData.forEach(movie => {
+        
+        const card = document.createElement('div');
+        card.className = "movie-card";
+        card.innerHTML = `
+          <div class="card" style="width: 18rem;">
+            <a href=${movie.Poster}><img class="card-img-top" src=${movie.Poster} alt="Card image cap"></a>
+            <div class="card-body">
+              <p class="card-text"><h1>${movie.Title}</h1><h3>${movie.Year}</h3></p>
+            </div>
           </div>
-        </div>
-      `;
-
-      cards.push(card)
-
-    });
-
-    let list = document.getElementById("list")
-    removeAllChildNodes(list)
-    cards.forEach(card =>{
-      list.appendChild(card, list.firstChild);
-    });
+        `;
+  
+        cards.push(card)
+  
+      });
+      
+    }else{
+      const errorView = document.createElement('div');
+      errorView.errorView = "movie-card";
+      errorView.innerHTML = `
+          <div class="error-message" style="position: center;">
+            <h1>Erro 404 - No Media named ${name}</h1>
+          </div>
+        `;
+        cards.push(errorView)
+      console.log(`No media encountered named ${name}`)
+    }
+    
+      let list = document.getElementById("list")
+      removeAllChildNodes(list)
+      cards.forEach(card =>{
+        list.appendChild(card, list.firstChild);
+      });
+   
+  
 
   } catch (error) {
     console.error('Error fetching data:', error);
