@@ -25,10 +25,14 @@ async function fetchIMDBData() {
       const card = document.createElement('div');
       card.className = "card";
       card.innerHTML = `
-        <h3>${movie.Title} (${movie.Year})</h3>
-        <img src="${movie.Poster}" alt="${movie.Title}">
-        <p>Type: ${movie.Type}</p>
+        <div class="card" style="width: 18rem;">
+          <a href=${movie.Poster}><img class="card-img-top" src=${movie.Poster} alt="Card image cap"></a>
+          <div class="card-body">
+            <p class="card-text"><h1>${movie.Title}</h1><h3>${movie.Year}</h3></p>
+          </div>
+        </div>
       `;
+      card.style.height = 250;
       document.body.appendChild(card);
     });
 
