@@ -1,12 +1,11 @@
-async function fetchIMDBData() {
-  
-  const searchbar = document.getElementById("search");
-  if(searchbar){
-    query = searchbar.value;
+async function fetchIMDBData(name) {
+
+  if(name){
+    query = name;
   }else{
     query = "Avengers"
   }
-
+  console.log(`QUERY: ${query}`)
   const apiKey = 'apikey 6Kt1sfLrUqNhe4W94HcKMW:7IpNljkbED6o5jnriHRt1r';
   const url = `https://api.collectapi.com/imdb/imdbSearchByName?query=${encodeURIComponent(query)}`;
 
