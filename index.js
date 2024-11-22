@@ -40,7 +40,8 @@ async function fetchIMDBData(name) {
         </div>
       `;
 
-      list.replaceChild(card);
+      let list = document.getElementById("list")
+      list.replaceChild(card, list.firstChild);
 
     });
 
