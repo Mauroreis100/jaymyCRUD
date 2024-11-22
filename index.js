@@ -22,6 +22,8 @@ async function fetchIMDBData() {
     const movieData = data.result;
 
     movieData.forEach(movie => {
+      document.getElementById("list").style.display = "grid"
+      document.getElementById("list").style.gap = 50
       const card = document.createElement('div');
       card.className = "card";
       card.innerHTML = `
@@ -32,7 +34,7 @@ async function fetchIMDBData() {
           </div>
         </div>
       `;
-      card.style.height = 250;
+      card.style.height = 150;
       document.body.appendChild(card);
     });
 
