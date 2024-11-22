@@ -9,7 +9,11 @@
     margin: 20px;
 }
 
-.webnav{
-    margin: 5px;
-    padding: 5px;
+form{
+    display: flex;
+    gap: 20px;
+}
+
+button, input, a{
+    margin: 0 10px;
 }
