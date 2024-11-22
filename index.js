@@ -51,3 +51,4 @@ async function fetchIMDBData(name) {
 }
 
 fetchIMDBData();
+
