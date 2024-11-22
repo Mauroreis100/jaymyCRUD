@@ -4,35 +4,37 @@ async function fetchIMDBData() {
   const url = `https://api.collectapi.com/imdb/imdbSearchByName?query=${encodeURIComponent(query)}`;
 
   try {
-      const response = await fetch(url, {
-          method: 'GET',
-          headers: {
-              'authorization': `apikey ${apiKey}`,
-              'content-type': 'application/json'
-          }
-      });
-
-      if (!response.ok) {
-          throw new Error();
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'authorization': `apikey ${apiKey}`,
+        'content-type': 'application/json'
       }
+    });
 
-      const data = await response.json();
-      console.log('Fetched Data:', data);
+    if (!response.ok) {
+      throw new Error();
+    }
 
-      const movieData = data;
+    const data = await response.json();
+    console.log('Fetched Data:', data);
 
-      movieData.array.forEach(movie => {
-        const card = document.createElement('div');
-        card.className = "card"
-        card.innerHTML =`
-        
-        `
-      });
+    const movieData = data.result;
+
+    movieData.forEach(movie => {
+      const card = document.createElement('div');
+      card.className = "card";
+      card.innerHTML = `
+        <h3>${movie.Title} (${movie.Year})</h3>
+        <img src="${movie.Poster}" alt="${movie.Title}">
+        <p>Type: ${movie.Type}</p>
+      `;
+      document.body.appendChild(card);
+    });
 
   } catch (error) {
-      console.error('Error fetching data:', error);
+    console.error('Error fetching data:', error);
   }
 }
 
 fetchIMDBData();
-
