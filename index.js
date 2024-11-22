@@ -1,9 +1,14 @@
-async function fetchIMDBData(name) {
-  const apiKey = 'apikey 6Kt1sfLrUqNhe4W94HcKMW:7IpNljkbED6o5jnriHRt1r';
-  let query = 'Avengers';  
-  if(name){
-    query = name;  
+async function fetchIMDBData() {
+  const lists = document.getElementById("search").value;
+  let query;
+  if(lists.length>0){
+    query = lists[0]
+  }else{
+    query = "Avengers"
   }
+
+
+  const apiKey = 'apikey 6Kt1sfLrUqNhe4W94HcKMW:7IpNljkbED6o5jnriHRt1r';
   const url = `https://api.collectapi.com/imdb/imdbSearchByName?query=${encodeURIComponent(query)}`;
 
   try {
