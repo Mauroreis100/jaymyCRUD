@@ -34,6 +34,7 @@ async function fetchIMDBData() {
         </div>
       `;
 
+      document.getElementById("list").append(card);
 
     });
 
