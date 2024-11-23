@@ -47,7 +47,7 @@
         </div>
         <div class="modal-body">
           
-          <div id="movie-form">
+          <div id="movie-form" style="padding-right: 7px;">
             <form id="addMovieForm" class="" style="display: flow;" >
                 <div class="mb-3">
                     <label for="name" class="form-label">Movie Title</label>
@@ -66,11 +66,11 @@
                     <input type="text" class="form-control" id="imageURL" required>
                 </div>
            
-                <button  type="button" onclick="const imageURL = document.getElementById('imageURL').value; const newYear = document.getElementById('newYear').value;const newTitle = document.getElementById('newTitle').value;const newType = document.getElementById('newType').value; addIMBDData(newTitle, newYear,newType,imageURL)" class="btn btn-primary">Add Movie</button>
-            </form>
-        </div>
-        </div>
-        <div class="modal-footer">
+              </form>
+            </div>
+          </div>
+          <div class="modal-footer">
+          <button  type="button" onclick="const imageURL = document.getElementById('imageURL').value; const newYear = document.getElementById('newYear').value;const newTitle = document.getElementById('newTitle').value;const newType = document.getElementById('newType').value; addIMBDData(newTitle, newYear,newType,imageURL)" class="btn btn-primary">Add Movie</button>
           <button id="modalClose" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         </div>
       </div>
