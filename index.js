@@ -214,7 +214,7 @@ function editMovie(index) {
             <form id="addMovieForm" class="" style="display: flow;" >
                 <div class="mb-3">
                     <label for="name" class="form-label">Movie Title</label>
-                    <input type="text" class="form-control" value="${sessionBD[index].Title}" id="editTitle" required>
+                    <input type="text" class="form-control" value="" id="editTitle" required>
                 </div>
                 <div class="mb-3">
                     <label for="category" class="form-label">Type</label>
@@ -234,7 +234,7 @@ function editMovie(index) {
           </div>
           <div class="modal-footer">
           <button id="editId"  type="button" onclick="const editImageURL = document.getElementById('imageURL').value; const editYear = document.getElementById('editYear').value;const editTitle = document.getElementById('editTitle').value;const editType = document.getElementById('editType').value; editIMBDData(editTitle, editYear, editType,editImageURL)" class="btn btn-success">Confirm edit</button>
-          <button id="modalClose" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button id="modalClose2" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
@@ -245,6 +245,11 @@ function editMovie(index) {
   const dynamicModal = new bootstrap.Modal(document.getElementById("dynamicModal"));
   dynamicModal.show();
   
+document.getElementById("editTitle").value=sessionBD[index].Title
+document.getElementById("editYear").value=sessionBD[index].Year
+document.getElementById("editType").value=sessionBD[index].Type
+document.getElementById("editImageURL").value=sessionBD[index].Poster
+
   document.getElementById("editId").onclick = function() {
     updatedMovie={
       Title: editTitle.value,
@@ -254,15 +259,16 @@ function editMovie(index) {
       imdbID: sessionBD[index].imdbID
     }
     // Update the movie data at the given index with new properties
-    sessionBD[index] = { ...sessionBD[index], ...updatedMovie };
+    sessionBD[index] =updatedMovie
     console.log(updatedMovie)
   
     //Save the updated data back to sessionStorage
     sessionStorage.setItem('movies', JSON.stringify(sessionBD));
+    // // Refresh the list to show the updated movie data
+    document.getElementById('modalClose2').click()
+    listIMDBData();
 };
 
-  // // Refresh the list to show the updated movie data
-  listIMDBData();
 
   console.log(`Movie at index ${index} updated successfully!`, sessionBD[index]);
 }
