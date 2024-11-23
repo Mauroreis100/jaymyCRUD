@@ -1,3 +1,4 @@
+// Projecto PWEB2 - Amadeu, Joaquim, Mauro,, Yannick, Yula - LECC31 2024
 function removeAllChildNodes(parent) {
   while (parent.firstChild) {
     parent.removeChild(parent.firstChild);
@@ -28,7 +29,7 @@ async function fetchIMDBData(name) {
     }
 
 
-
+//Carremamento ao LocalStorageSession 
     const data = await response.json();
     console.log('Fetched Data:', data);
     const movieData = data.result;
@@ -40,11 +41,13 @@ async function fetchIMDBData(name) {
   }
 }
 
+//Faz a listagem do sessionStorage
 function listIMDBData() {
   let cards = []
   sessionBD = JSON.parse(sessionStorage.getItem('movies') || '[]');
   console.log('Movies:', sessionBD);
 
+  //Renderização dos elementos no session storage
   if (sessionBD.length != 0) {
     sessionBD.forEach(movie => {
       const card = document.createElement('div');
@@ -62,7 +65,8 @@ function listIMDBData() {
 
     });
 
-  } else {
+  } else { 
+    //Tela de conteúdo não encontrado
     const errorView = document.createElement('div');
     errorView.errorView = "movie-card";
     errorView.innerHTML = `
@@ -84,6 +88,7 @@ function listIMDBData() {
 
 }
 
+// Função de procura de filmes por nome
 function searchLocal(name) {
   sessionBD = JSON.parse(sessionStorage.getItem('movies') || '[]');
   let cards = []
@@ -124,7 +129,7 @@ function searchLocal(name) {
   });
 }
 
-
+// Se filme existir na IMDb, deve buscar os dados da IMDb e criar um novo registro na base de dados local.
 async function addIMBDData(title, year, type, poster) {
 
   sessionBD = JSON.parse(sessionStorage.getItem('movies') || '[]');
@@ -146,13 +151,13 @@ async function addIMBDData(title, year, type, poster) {
     
     const data = await response.json();
     console.log('Fetched Data:', data);
-    if(data.result!=''){
+    if(data.result!=''){ //Se encontra no IMDb
       const movieData = data.result;
       sessionBD.push(movieData[0])
       alert(`Movie ${movieData[0].Title} found on IMDb! - Added to Local DataBase`)
       document.getElementById('modalClose').click()
       sessionStorage.setItem('movies', JSON.stringify(sessionBD))
-    }else{
+    }else{ //Se não encontra on IMDb
       newMovie = {
         Title: title,
         Year: year,
@@ -175,5 +180,5 @@ async function addIMBDData(title, year, type, poster) {
   }
 
 }
-fetchIMDBData();
+fetchIMDBData(); //1º Carregamento ao armazenamento local
 
