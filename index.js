@@ -1,15 +1,15 @@
 function removeAllChildNodes(parent) {
   while (parent.firstChild) {
-      parent.removeChild(parent.firstChild);
+    parent.removeChild(parent.firstChild);
   }
 }
 
 
 async function fetchIMDBData(name) {
 
-  if(name){
+  if (name) {
     query = name;
-  }else{
+  } else {
     query = "Avengers"
   }
   console.log(`QUERY: ${query}`)
@@ -34,9 +34,10 @@ async function fetchIMDBData(name) {
 
     const movieData = data.result;
     let cards = []
-    if(movieData!=0){
+    sessionStorage.setItem('movies', JSON.stringify(movieData))
+    if (movieData != 0) {
       movieData.forEach(movie => {
-        
+
         const card = document.createElement('div');
         card.className = "movie-card";
         card.innerHTML = `
@@ -47,12 +48,12 @@ async function fetchIMDBData(name) {
             </div>
           </div>
         `;
-  
+
         cards.push(card)
-  
+
       });
-      
-    }else{
+
+    } else {
       const errorView = document.createElement('div');
       errorView.errorView = "movie-card";
       errorView.innerHTML = `
@@ -60,22 +61,34 @@ async function fetchIMDBData(name) {
             <h1>Movie Not found :( ${name}</h1>
           </div>
         `;
-        cards.push(errorView)
+      cards.push(errorView)
       console.log(`No media encountered named ${name}`)
     }
-    
-      let list = document.getElementById("list")
-      removeAllChildNodes(list)
-      cards.forEach(card =>{
-        list.appendChild(card, list.firstChild);
-      });
-   
-  
+
+    let list = document.getElementById("list")
+    removeAllChildNodes(list)
+    cards.forEach(card => {
+      list.appendChild(card, list.firstChild);
+    });
+
+
 
   } catch (error) {
     console.error('Error fetching data:', error);
   }
 }
 
+function addIMBDData() {
+  newMovie = {
+    Title: 'Mauro',
+    Year: 2002,
+    imdbID: "tt4154796",
+    Type: "movie",
+    Poster: "https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_SX300.jpg"
+  }
+  
+  sessionStorage.setItem('movies',newMovie)
+}
 fetchIMDBData();
+addIMBDData()
 
