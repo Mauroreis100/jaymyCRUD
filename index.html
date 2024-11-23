@@ -13,7 +13,6 @@
 </head>
 
 <body>
-
   <div class="webnav">
     <nav class="navbar bg-body-tertiary">
       <div class="container-fluid">
@@ -21,8 +20,8 @@
         <form class="d-flex" role="search">
           <input id="search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
           <button onclick="const title = document.getElementById('search').value; searchLocal(title);" ;
-            class="btn btn-outline-success" type="button">Search</button>
-
+          class="btn btn-secondary" type="button">Search</button>
+          
           <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Add Movie
           </button>
@@ -30,6 +29,12 @@
       </div>
     </nav>
   </div>
+  
+  <!-- <div id="loadingSpinner" class="d-flex justify-content-center mt-3" >
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div> -->
 
   <div id="list">
     <div>No Results</div>
@@ -70,7 +75,7 @@
             </div>
           </div>
           <div class="modal-footer">
-          <button  type="button" onclick="const imageURL = document.getElementById('imageURL').value; const newYear = document.getElementById('newYear').value;const newTitle = document.getElementById('newTitle').value;const newType = document.getElementById('newType').value; addIMBDData(newTitle, newYear,newType,imageURL)" class="btn btn-primary">Add Movie</button>
+          <button  type="button" onclick="const imageURL = document.getElementById('imageURL').value; const newYear = document.getElementById('newYear').value;const newTitle = document.getElementById('newTitle').value;const newType = document.getElementById('newType').value; addIMBDData(newTitle, newYear,newType,imageURL)" class="btn btn-success">Add Movie</button>
           <button id="modalClose" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         </div>
       </div>
