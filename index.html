@@ -50,28 +50,28 @@
           <div id="movie-form">
             <form id="addMovieForm" class="" style="display: flow;" >
                 <div class="mb-3">
-                    <label for="name" class="form-label">Movie Name</label>
-                    <input type="text" class="form-control" id="name" required>
+                    <label for="name" class="form-label">Movie Title</label>
+                    <input type="text" class="form-control" id="newTitle" required>
                 </div>
                 <div class="mb-3">
-                    <label for="category" class="form-label">Category</label>
-                    <input type="text" class="form-control" id="category" required>
+                    <label for="category" class="form-label">Type</label>
+                    <input type="text" class="form-control" id="newType" required>
                 </div>
                 <div class="mb-3">
                     <label for="year" class="form-label">Year</label>
-                    <input type="number" class="form-control" id="year" required>
+                    <input type="number" class="form-control" id="newYear" required>
                 </div>
                 <div class="mb-3">
                     <label for="image" class="form-label">Image URL</label>
-                    <input type="text" class="form-control" id="image" required>
+                    <input type="text" class="form-control" id="imageURL" required>
                 </div>
-                <button type="submit" class="btn btn-primary">Add Movie</button>
+           
+                <button  type="button" onclick="const imageURL = document.getElementById('imageURL').value; const newYear = document.getElementById('newYear').value;const newTitle = document.getElementById('newTitle').value;const newType = document.getElementById('newType').value; addIMBDData(newTitle, newYear,newType,imageURL)" class="btn btn-primary">Add Movie</button>
             </form>
         </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button id="modalClose" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         </div>
       </div>
     </div>

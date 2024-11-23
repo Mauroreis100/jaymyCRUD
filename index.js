@@ -84,12 +84,9 @@ function listIMDBData() {
 
 }
 
-
-
 function searchLocal(name) {
   sessionBD = JSON.parse(sessionStorage.getItem('movies') || '[]');
   let cards = []
-  let found = false
   sessionBD.forEach(movies => {
     if (movies.Title.includes(name)) {
       console.log("Encontrado" + movies.Title)
@@ -107,82 +104,76 @@ function searchLocal(name) {
       cards.push(card)
     }
   });
-  if (cards==0) {
-      const errorView = document.createElement('div');
-      errorView.errorView = "movie-card";
-      errorView.innerHTML = `
+  if (cards == 0) {
+    const errorView = document.createElement('div');
+    errorView.errorView = "movie-card";
+    errorView.innerHTML = `
           <div class="error-message" style="position: center;">
             <h1>Movie Not found :( ${name}</h1>
           </div>
         `;
-      cards.push(errorView)
-      console.log(`No media encountered named ${name}`)
-    
-      
-    }
-    let list = document.getElementById("list")
-    removeAllChildNodes(list)
-    cards.forEach(card => {
-      list.appendChild(card, list.firstChild);
-    });
+    cards.push(errorView)
+    console.log(`No media encountered named ${name}`)
+
+
+  }
+  let list = document.getElementById("list")
+  removeAllChildNodes(list)
+  cards.forEach(card => {
+    list.appendChild(card, list.firstChild);
+  });
 }
 
 
-function fetchLocal() {
-  /*
-      if (movieData != 0) {
-      movieData.forEach(movie => {
-        const card = document.createElement('div');
-        card.className = "movie-card";
-        card.innerHTML = `
-          <div class="card" style="width: 18rem;">
-            <a href=${movie.Poster} target="_blank"><img class="card-img-top" src=${movie.Poster} alt="Card image cap"></a>
-            <div class="card-body">
-              <p class="card-text"><h1>${movie.Title}</h1><h3>${movie.Year}</h3></p>
-            </div>
-          </div>
-        `;
+async function addIMBDData(title, year, type, poster) {
 
-        cards.push(card)
-
-      });
-
-    } else {
-      const errorView = document.createElement('div');
-      errorView.errorView = "movie-card";
-      errorView.innerHTML = `
-          <div class="error-message" style="position: center;">
-            <h1>Movie Not found :( ${name}</h1>
-          </div>
-        `;
-      cards.push(errorView)
-      console.log(`No media encountered named ${name}`)
-    }
-
-    let list = document.getElementById("list")
-    removeAllChildNodes(list)
-    cards.forEach(card => {
-      list.appendChild(card, list.firstChild);
+  sessionBD = JSON.parse(sessionStorage.getItem('movies') || '[]');
+  
+  const apiKey = 'apikey 6Kt1sfLrUqNhe4W94HcKMW:7IpNljkbED6o5jnriHRt1r';
+  const url = `https://api.collectapi.com/imdb/imdbSearchByName?query=${encodeURIComponent(title)}`;
+  try {
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'authorization': `apikey ${apiKey}`,
+        'content-type': 'application/json'
+      }
     });
 
+    if (!response.ok) {
+      throw new Error();
+    }
+    
+    const data = await response.json();
+    console.log('Fetched Data:', data);
+    if(data.result!=''){
+      const movieData = data.result;
+      sessionBD.push(movieData[0])
+      alert(`Movie ${movieData[0].Title} found on IMDb! - Added to Local DataBase`)
+      document.getElementById('modalClose').click()
+      sessionStorage.setItem('movies', JSON.stringify(sessionBD))
+    }else{
+      newMovie = {
+        Title: title,
+        Year: year,
+        imdbID: Math.floor(Math.random() * (100000000 - 0 + 1)) + 0,
+        Type: type,
+        Poster: poster
+      }
 
-
+      sessionBD.push(newMovie)
+      sessionStorage.setItem('movies', JSON.stringify(sessionBD))
+      alert(`Movie ${title} found on IMDb! - Added to Local DataBase`)
+      document.getElementById('modalClose').click()
+    }
   } catch (error) {
     console.error('Error fetching data:', error);
-  } */
-}
+  }finally{
 
-function addIMBDData() {
-  newMovie = {
-    Title: 'Mauro',
-    Year: 2002,
-    imdbID: "tt4154796",
-    Type: "movie",
-    Poster: "https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_SX300.jpg"
+    listIMDBData()
+    console.log('New Movies:', sessionBD);
   }
 
-  sessionStorage.setItem('movies', newMovie)
 }
 fetchIMDBData();
-addIMBDData()
 
