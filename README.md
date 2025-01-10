@@ -8,3 +8,5 @@ Ainda no contexto da IMDB, crie uma aplicação com dados locais válidos pela d
 6. Esta aplicação deverá ser hospedada igualmente no netflify ou serviço similar
 
 Para este projecto, o estudante poderá usar HTML5+CSS+JS, com ou sem uma framework de UI (VueJS ou ReactJS) mas mantendo especial atenção à estética
+
+![image](https://github.com/user-attachments/assets/080dbcd7-dc0c-4eca-b6f8-ef73c8275eed)
